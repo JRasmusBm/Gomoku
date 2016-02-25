@@ -9,7 +9,7 @@ import java.util.Observer;
 import lab4.client.GomokuClient;
 
 /**
- * Represents the state of a game
+ * Represents the state of a game of Gomoku.
  */
 
 public class GomokuGameState extends Observable implements Observer {
@@ -47,10 +47,10 @@ public class GomokuGameState extends Observable implements Observer {
 	private String message;
 
 	/**
-	 * The constructor
+	 * Takes a game client as a parameter and adds it as an observer. Creates a game grid.
 	 * 
 	 * @param gc
-	 *            The client used to communicate with the other player
+	 *            The client used to communicate with the other player.
 	 */
 	public GomokuGameState(GomokuClient gc) {
 		client = gc;
@@ -61,30 +61,28 @@ public class GomokuGameState extends Observable implements Observer {
 	}
 
 	/**
-	 * Returns the message string
-	 * 
-	 * @return the message string
+	 * Returns the message string, that holds a predefined message depending on what state the game is in.
+	 * @return The message string.
 	 */
 	public String getMessageString() {
 		return this.message;
 	}
 
 	/**
-	 * Returns the game grid
-	 * 
-	 * @return the game grid
+	 * Returns the game grid.
+	 * @return The game grid.
 	 */
 	public GameGrid getGameGrid() {
 		return this.gameGrid;
 	}
 
 	/**
-	 * This player makes a move at a specified location
+	 * Attempts to place a tile in a specified square.
 	 * 
 	 * @param x
-	 *            the x coordinate
+	 *            The x coordinate of the square.
 	 * @param y
-	 *            the y coordinate
+	 *            The y coordinate of the square.
 	 */
 	public void move(int x, int y) {
 		if (this.cheatOn) {
@@ -129,7 +127,7 @@ public class GomokuGameState extends Observable implements Observer {
 	}
 
 	/**
-	 * Starts a new game with the current client
+	 * Starts a new game with the current client.
 	 */
 	public void newGame() {
 		this.gameGrid.clearGrid();
@@ -141,8 +139,7 @@ public class GomokuGameState extends Observable implements Observer {
 	}
 
 	/**
-	 * Other player has requested a new game, so the game state is changed
-	 * accordingly
+	 * Other player has requested a new game. The game state is changed accordingly.
 	 */
 	public void receivedNewGame() {
 		this.gameGrid.clearGrid();
@@ -153,7 +150,7 @@ public class GomokuGameState extends Observable implements Observer {
 	}
 
 	/**
-	 * The connection to the other player is lost, so the game is interrupted
+	 * The connection to the other player is lost, so the game is interrupted.
 	 */
 	public void otherGuyLeft() {
 		this.gameGrid.clearGrid();
@@ -165,7 +162,7 @@ public class GomokuGameState extends Observable implements Observer {
 	}
 
 	/**
-	 * The player disconnects from the client
+	 * Disconnects the player from the client.
 	 */
 	public void disconnect() {
 		this.gameGrid.clearGrid();
@@ -177,12 +174,12 @@ public class GomokuGameState extends Observable implements Observer {
 	}
 
 	/**
-	 * The player receives a move from the other player
+	 * The player receives a move from the other player.
 	 * 
 	 * @param x
-	 *            The x coordinate of the move
+	 *            The x coordinate of the placed tile.
 	 * @param y
-	 *            The y coordinate of the move
+	 *            The y coordinate of the placed tile.
 	 */
 	public void receivedMove(int x, int y) {
 		if (currentState == OTHER_TURN && x < gameGrid.getSize() && y < gameGrid.getSize()) {
@@ -213,6 +210,11 @@ public class GomokuGameState extends Observable implements Observer {
 		notifyObservers();
 
 	}
+	
+	/**
+	 * Switches the turn.
+	 *
+	 */
 
 	public void update(Observable o, Object arg) {
 
@@ -230,10 +232,19 @@ public class GomokuGameState extends Observable implements Observer {
 		notifyObservers();
 
 	}
+	
+	/**
+	 * Toggles the cheat mode.
+	 */
 
 	public void toggleCheatMode() {
 		this.cheatOn = !this.cheatOn;
 	}
+	
+	/**
+	 * Is the cheat mode on?
+	 * @return (1) true if the cheat mode is on, (2) false if it's not.
+	 */
 
 	public boolean cheatModeOn() {
 		return this.cheatOn;

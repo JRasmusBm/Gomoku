@@ -1,0 +1,39 @@
+<html>
+	<head>
+	<meta charset="UTF-8"/>
+	<title>Gomuku</title> 
+	<style>
+		.menu{background-color:lightblue; padding:5px; color:black; 
+				    border:solid black;		
+		}
+		a {color:black; background-color:transparent; text-decoration:none;}
+		a:hover {color:blue;}
+	</style>
+	</head>
+
+
+	
+	<body id="home" style="width:60%; font-family:helvetica; background:beige;; ">
+	<h1>   lab4 - Gumoku</h1> <!-- 5 -->
+	
+	<div class="menu">
+		<ul style="list-style-type:none;" id="contents">
+			<li><a href="GomokuMain.html " target="_blank">GomokuMain.java</a></li><br/>
+			<li>lab4.data</li><br/>
+				<ol style="list-style-type:none;">
+					<li><a href="data/GameGrid.html" target="_blank";>GameGrid.java</a></li>
+					<li><a href="data/GomokuGameState.html" target="_blank";>GomokuGameState.java</a></li>
+				</ol><br/>	
+			<li>lab4.gui</li><br/>
+				<ul style="list-style-type:none;">
+					<li><a href="gui/GamePanel.html" target="_blank";>GamePanel.java</a></li>
+					<li><a href="gui/GomokuGUI.html" target="_blank";>GomokuGUI.java</a></li>
+				</ul> 
+		</ul>
+	</div>
+
+
+
+
+
+</html>

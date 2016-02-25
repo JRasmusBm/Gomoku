@@ -1,7 +1,5 @@
 package lab4.gui;
 
-import java.awt.BorderLayout;
-import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -9,12 +7,9 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 import java.util.Observable;
 import java.util.Observer;
 
-import javax.swing.Box;
-import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -39,7 +34,7 @@ public class GomokuGUI implements Observer {
 	private final String disconnectButtonToolTip = "Click this button to disconnect";
 	private final String newGameButtonToolTip = "Click this button to clear the bord and create a new game";
 	
-	//Buttons n' shit
+	//Buttons and other elements
 	private JButton connectButton;
 	private JButton disconnectButton;
 	private JButton newGameButton;
@@ -48,12 +43,12 @@ public class GomokuGUI implements Observer {
 	private Dimension buttonDim = new Dimension(20, 20);
 
 	/**
-	 * The constructor
+	 * Constructs a GUI for the Gomoku game state.
 	 * 
-	 * @param g
-	 *            The game state that the GUI will visualize
-	 * @param c
-	 *            The client that is responsible for the communication
+	 * @param gameState
+	 *            The game state for the GUI to visualize.
+	 * @param gomokuClient
+	 *            The client that is responsible for communication.
 	 */
 	public GomokuGUI(GomokuGameState gameState, GomokuClient gomokuClient) {
 		this.client = gomokuClient;
@@ -135,6 +130,10 @@ public class GomokuGUI implements Observer {
 		this.newGameButton.setSize(buttonDim);
 		
 	}
+	
+	/**
+	 * Updates the buttons to match the connection status.
+	 */
 
 	public void update(Observable arg0, Object arg1) {
 
@@ -151,7 +150,7 @@ public class GomokuGUI implements Observer {
 			}
 		}
 
-		// Update the status text if the gamestate has changed
+		// Update the status text if the game state has changed
 		if (arg0 == gamestate) {
 			messageLabel.setText(gamestate.getMessageString());
 		}
@@ -162,16 +161,13 @@ public class GomokuGUI implements Observer {
 		private JFrame frame;
 		
 		public Listen2Mouse(JFrame frame) {
-			// TODO Auto-generated constructor stub
 			this.frame = frame;
 		}
 		
 		public void mouseClicked(MouseEvent e) {
 			int[] xy = gamePanel.getGridPosition(e.getX(), e.getY());
-			//System.out.println("Clicked: " + "x:" + xy[0] + " y:" + xy[1]);
-			if(xy[0] < gamestate.getGameGrid().getSize()){
-				gamestate.move(xy[0], xy[1]);
-			}
+			// System.out.println("Clicked: " + "x:" + xy[0] + " y:" + xy[1]);
+			gamestate.move(xy[0], xy[1]);
 		}
 		
 		public void mouseEntered(MouseEvent e) {
@@ -238,10 +234,6 @@ public class GomokuGUI implements Observer {
 			
 			setConstraints4Frame2();
 			frame2.setLayout(layout2);
-		}
-		
-		private void moveXY() {
-			
 		}
 		
 		private void setConstraints4Frame2() {

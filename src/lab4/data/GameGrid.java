@@ -3,27 +3,29 @@ package lab4.data;
 import java.util.Observable;
 
 /**
- * Represents the 2-d game grid
+ * Represents a two-dimensional game grid for a game of Gomoku.
+ * 
  */
 
 public class GameGrid extends Observable {
 	private int gridSize;
 	private int[][] gridList;
-	public static final int EMPTY = 0;
-	public static final int ME = 1;
-	public static final int OTHER = 2;
-	public static final int INROW = 5;
+	private static final int EMPTY = 0;
+	private static final int INROW = 5;
 
-	/**
-	 * Constructor
-	 * 
-	 * @param size
-	 *            The width/height of the game grid
-	 */
+	/*
 	public static void main(String[] args) {
 		GameGrid test = new GameGrid(15);
 		test.gridList[3][2] = 1;
 	}
+	*/
+	
+	/**
+	 *  
+	 * Initializes a game grid with size*size squares.
+	 * @param size
+	 *            The width/height of the game grid.
+	 */
 
 	public GameGrid(int size) {
 		this.gridSize = size;
@@ -31,36 +33,38 @@ public class GameGrid extends Observable {
 	}
 
 	/**
-	 * Reads a location of the grid
+	 * What is in the square?
 	 * 
 	 * @param x
-	 *            The x coordinate
+	 *            The x coordinate of the tile.
 	 * @param y
-	 *            The y coordinate
-	 * @return the value of the specified location
+	 *            The y coordinate of the tile.
+	 *            
+	 * @return The value of the specified tile.
 	 */
 	public int getLocation(int x, int y) {
 		return this.gridList[x][y];
 	}
 
 	/**
-	 * Returns the size of the grid
-	 * 
-	 * @return the grid size
+	 * What is the grid size?
+	 * @return The grid size.
 	 */
 	public int getSize() {
 		return this.gridSize;
 	}
 
 	/**
-	 * Enters a move in the game grid
+	 * Attempts to place a tile in the specified square.
 	 * 
 	 * @param x
-	 *            the x position
+	 *            The x position.
 	 * @param y
-	 *            the y position
+	 *            The y position.
 	 * @param player
-	 * @return true if the insertion worked, false otherwise
+	 * 				The player performing the move.
+	 * 
+	 * @return (1) true if the tile was successfully placed, (2) false if it the square was already occupied.
 	 */
 	public boolean move(int x, int y, int player) {
 		//System.out.println(player);
@@ -75,7 +79,8 @@ public class GameGrid extends Observable {
 	}
 
 	/**
-	 * Clears the grid of pieces
+	 *
+	 * Clears the grid, removing all the tiles.
 	 */
 	public void clearGrid() {
 		this.gridList = new int[this.gridSize][this.gridSize];
@@ -84,11 +89,11 @@ public class GameGrid extends Observable {
 	}
 
 	/**
-	 * Check if a player has 5 in row
+	 * Does the player have 5 tiles in a row?
 	 * 
 	 * @param player
-	 *            the player to check for
-	 * @return true if player has 5 in row, false otherwise
+	 *            The player whose tiles are being checked.
+	 * @return (1) true if player currently has 5 tiles in row, (2) false if he doesn't.
 	 */
 	
 	public boolean isWinner(int player) {
@@ -99,7 +104,6 @@ public class GameGrid extends Observable {
 						return true;
 					}
 				}
-
 			}
 		}
 		return false;
