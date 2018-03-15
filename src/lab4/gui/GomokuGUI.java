@@ -57,6 +57,7 @@ public class GomokuGUI implements Observer {
 		gamestate.addObserver(this);
 
 		JFrame frame = new JFrame(gameName);
+		frame.setMinimumSize(new Dimension(650, 700));
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		createGamePanel(frame);

@@ -27,7 +27,7 @@ public class GomokuMain {
 		super();
 	}
 	
-	private final static int port = 4001;
+	private final static int port = 4000;
 	
 	/**
 	 * Starts the Gomuku client, a class to keep track of the state of the game, as well and its GUI. No arguments needed.
@@ -35,12 +35,9 @@ public class GomokuMain {
 	
 	public static void main(String[] args) {
 		GomokuClient gomokuClient = new GomokuClient(port);
-		//System.out.println("1");
 		GomokuGameState gomokuGameState = new GomokuGameState(gomokuClient);
-		//System.out.println("2");
 		@SuppressWarnings("unused")
 		GomokuGUI gomokuGUI = new GomokuGUI(gomokuGameState, gomokuClient);
-		//System.out.println("3");
 	}
 
 }
