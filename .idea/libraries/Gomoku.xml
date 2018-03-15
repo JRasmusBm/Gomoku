@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="Gomoku">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/lab4/resources/Gomoku.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
